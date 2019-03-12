@@ -1,1 +1,2 @@
-output
+electron-win32-x64/resources/app/
+node_modules/
