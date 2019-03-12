@@ -8,10 +8,13 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "mkdir output && cp -a ./src/Electron.app ./output/ && cp ./src/Info.plist ./output/Electron.app/Contents && cp -a ./app ./output/Electron.app/Contents/Resources/ && cp ./src/nomnoml.icns ./output/Electron.app/Contents/Resources && rm -rf ./output/Nomnoml.app && mv ./output/Electron.app ./output/Nomnoml.app",
-    "start": "open ./output/Nomnoml.app"
+    "start": "electron-win32-x64\\electron.exe app\\"
   },
   "author": "dq",
+  "contributors": [
+    {
+      "name": "Redsray"
+    }
+  ],
   "license": "ISC"
 }
