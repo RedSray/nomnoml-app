@@ -1,9 +1,6 @@
-var app = require('app');  // Module to control application life.
-var BrowserWindow = require('browser-window');  // Module to create native browser window.
-var Menu = require('menu');  // Module to create menu.
-
-// Report crashes to our server.
-require('crash-reporter').start();
+var app = require('electron').app;  // Module to control application life.
+var BrowserWindow = require('electron').BrowserWindow;  // Module to create native browser window.
+var Menu = require('electron').Menu;  // Module to create menu.
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -55,34 +52,34 @@ var template = [
       {
         label: 'Reload',
         accelerator: 'CmdOrCtrl+R',
-        click: function(item, focusedWindow) {
-          if (focusedWindow)
+        click: function (item, focusedWindow) {
+          if(focusedWindow)
             focusedWindow.reload();
         }
       },
       {
         label: 'Toggle Full Screen',
-        accelerator: (function() {
-          if (process.platform == 'darwin')
+        accelerator: (function () {
+          if(process.platform == 'darwin')
             return 'Ctrl+Command+F';
           else
             return 'F11';
         })(),
-        click: function(item, focusedWindow) {
-          if (focusedWindow)
+        click: function (item, focusedWindow) {
+          if(focusedWindow)
             focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
         }
       },
       {
         label: 'Toggle Developer Tools',
-        accelerator: (function() {
-          if (process.platform == 'darwin')
+        accelerator: (function () {
+          if(process.platform == 'darwin')
             return 'Alt+Command+I';
           else
             return 'Ctrl+Shift+I';
         })(),
-        click: function(item, focusedWindow) {
-          if (focusedWindow)
+        click: function (item, focusedWindow) {
+          if(focusedWindow)
             focusedWindow.toggleDevTools();
         }
       },
@@ -110,13 +107,13 @@ var template = [
     submenu: [
       {
         label: 'Learn More',
-        click: function() { require('electron').shell.openExternal('http://electron.atom.io') }
+        click: function () { require('electron').shell.openExternal('http://electron.atom.io') }
       },
     ]
   },
 ];
 
-if (process.platform == 'darwin') {
+if(process.platform == 'darwin') {
   var name = require('electron').app.getName();
   template.unshift({
     label: name,
@@ -156,7 +153,7 @@ if (process.platform == 'darwin') {
       {
         label: 'Quit',
         accelerator: 'Command+Q',
-        click: function() { app.quit(); }
+        click: function () { app.quit(); }
       },
     ]
   });
@@ -173,22 +170,22 @@ if (process.platform == 'darwin') {
 }
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function() {
+app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform != 'darwin') {
+  if(process.platform != 'darwin') {
     app.quit();
   }
 });
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
-app.on('ready', function() {
+app.on('ready', function () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-  	width: 1366,
-  	height: 768,
-  	show: true
+    width: 1366,
+    height: 768,
+    show: true
   });
 
   menu = Menu.buildFromTemplate(template);
@@ -201,7 +198,7 @@ app.on('ready', function() {
   // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
-  mainWindow.on('closed', function() {
+  mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
